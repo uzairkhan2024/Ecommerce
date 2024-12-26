@@ -1,0 +1,98 @@
+<section id="product">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="productHeading text-center">
+                    <h2 class="mb-3">Exclusive Products</h2>
+
+                </div>
+            </div>
+            <div class="col-md-3 filter">
+             
+                  <div class="box-shadow">
+                    <div class="card mt-4 product-card">
+                        <div class="card-body">
+                         <!-- Pagination -->
+                        <div class="pagination">
+                          <button class="btn btn-primary me-2" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+                          <h6 class="PageNumber"> Page {{currentPage}}</h6>
+                          <button class="btn btn-primary" (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= products.length">Next</button>
+                        </div>
+                        <hr>
+                            <form #userForm="ngForm">
+                                <div class="filter-section">
+                                    <label for="categorySelect">Filter by Category:</label>
+                                    <select id="categorySelect" class="form-select" (change)="onCategoryChange($event)">
+                                      <option value="0">All Categories</option>
+                                      <option *ngFor="let category of Category" [value]="category.categoryId">
+                                        {{ category.categoryName }}
+                                      </option>
+                                    </select>
+                                    <!--Filter By Price-->
+                                    <div class="price-filter mt-4">
+                                      <label for="priceRange">Filter by Price Range:</label>
+                                      <div class="d-flex justify-content-between align-items-center">
+                                        <input
+                                          type="number"
+                                          class="form-control me-2"
+                                          name="minPrice"
+                                          [(ngModel)]="minPrice"
+                                          placeholder="Min Price"
+                                        />
+                                        <input
+                                          type="number"
+                                          class="form-control ms-2"
+                                          name="maxPrice"
+                                          [(ngModel)]="maxPrice"
+                                          placeholder="Max Price"
+                                        />
+                                      </div>
+                                      <button class="btn btn-success mt-3" (click)="filterByPrice()">Search</button>
+                                    </div>
+                                  </div>
+                                  
+                              </form>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row mt-3">
+                    <div class="col-md-4" *ngFor="let product of displayedProducts" >
+                        <div class="box-shadow">
+                            <div class="card mt-2 product-card">
+                                <img   [src]="product.productImageUrl"
+                                    class="card-img-top img-fluid" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{product.productShortName}}</h5>
+                                    <p class="card-text"><span
+                                            class="text-danger fw-semibold me-2">$ {{product.productPrice}}</span> 
+                                         
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span><i class="fa-solid fa-star  m-0" style="color: #f1f50f;"></i></span> 
+                                            <span><i class="fa-solid fa-star  m-0" style="color: #f1f50f;"></i></span>
+                                            <span><i class="fa-solid fa-star-half-stroke  m-0"
+                                                    style="color: #f1f50f;"></i></span>
+                                            <span class="text-muted">(25)</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-end pb-0 mb-0"><button (click)="addToCart(product.productId)"
+                                                class="btn  text-end btn-sm btn-success p-2"><i
+                                                    class="fa-solid fa-cart-plus fs-5"
+                                                    style="color: #0c0d0d;"></i></button></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

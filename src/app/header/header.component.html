@@ -1,0 +1,219 @@
+<header>
+  <!-- NavBar -->
+  <nav
+    class="navbar navbar-expand-lg navbar-light nav-yellow border-bottom border-top p-0"
+  >
+    <div class="container">
+      <a class="navbar-brand fs-4 fw-bold" routerLink="products">
+        <i class="fa fa-cart-shopping fs-4" style="color: #f54242"></i>
+        <span class="textBlur">Shopwise</span></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <!--Toggle  -->
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Nav Items -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link  fw-semibold text-uppercase me-1 text-danger"
+              routerLink="Home"
+              id="navbarDropdown"
+             
+            >
+              home
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle redHover fw-semibold text-uppercase text-black me-1"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              pages
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" routerLink="About-Us">About Us</a></li>
+              <li><a class="dropdown-item" routerLink="ContactUs">Cotact Us</a></li>
+
+              <li>
+                <a class="dropdown-item" routerLink="TermsAndCondition">Terms and Conditions</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link fw-semibold text-uppercase text-black me-1"
+              routerLink="ContactUs"
+              >Contact us</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="products"
+              ><i
+                class="fa-solid fa-magnifying-glass fs-5"
+                style="color: #0c0d0d"
+              ></i
+            ></a>
+          </li>
+          <!-- cart -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown3"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i
+                class="fa fa-cart-shopping fs-5 me-1"
+                style="color: #202122"
+              ></i>
+            </a>
+            <ul
+              class="dropdown-menu menuOnLeft rounded-0 mt-2"
+              aria-labelledby="navbarDropdown3"
+            >
+              <ng-container *ngIf="cartItems.length !=0 " >
+                <li class="p-2"  *ngFor="let item of cartItems">
+                  <div
+                    class="d-flex w-100 border-bottom justify-content-evenly"
+                  >
+                    <div>
+                      <img
+                        style="height: 80px !important"
+                        class="img-fluid p-2"
+                        [src]="item.productImageUrl"
+                        alt="item Pic"
+                      />
+                    </div>
+                    <div>
+                      <a
+                        href="#"
+                        class="text-decoration-none text-black fw-semibold"
+                      >
+                        <p class="m-0 p-0">{{ item.productShortName }}</p>
+                      </a>
+                      <p>
+                        1
+                        <i class="fa-solid fa-xmark" style="color: #0d0d0d"></i
+                        >${{ item.productPrice }}
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      class="btn fs-5 closeBtn"
+                      (click)="DeleteProduct(item.cartId)"
+                    >
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+                  </div>
+                </li>
+
+                <li class="p-2" >
+                  <div class="w-100">
+                    <div class="d-flex justify-content-between">
+                      <h6>SubTotal :</h6>
+                      <h6>$ {{getSubtotal()}}</h6>
+                    </div>
+                    <div class="d-flex justify-content-evenly mt-2">
+                      <a routerLink="/ViewCart">
+                      <button class="btn btn-dark rounded-0 px-3">
+                        View Cart
+                      </button></a>
+                      <a routerLink="/Checkout">
+                        <button class="btn btn-danger rounded-0 px-3">
+                          Checkout
+                        </button></a
+                      >
+                    </div>
+                  </div>
+                </li>
+              </ng-container>
+              <ng-container *ngIf="cartItems.length == 0 ">
+                <li class="p-2">
+                  <div class="w-100 text-center">
+                    <h6>Cart Is Empty</h6>
+                  </div>
+                </li>
+              </ng-container>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle redHover fw-semibold text-uppercase text-black me-1"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fa fa-user fs-5 me-1" style="color: #202122"></i>
+            </a>
+            <ul
+              class="dropdown-menu"
+              style="left: -50px"
+              aria-labelledby="navbarDropdown"
+            >
+              <li>
+                <div class="d-flex justify-content-evenly mt-2">
+                  <a
+                    routerLink="Login"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight"
+                    aria-controls="offcanvasRight"
+                    *ngIf="!(isLoggedIn$ | async)"
+                  >
+                    <button class="btn btn-danger rounded-0 px-3">
+                      Login
+                    </button></a
+                  >
+                  <a
+                    routerLink="Register"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    *ngIf="!(isLoggedIn$ | async)"
+                  >
+                    <button class="btn btn-danger rounded-0 px-3">
+                      Register
+                    </button></a
+                  >
+                </div>
+              </li>
+              <li>
+                <a
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#offcanvasRight"
+                  aria-controls="offcanvasRight"
+                  *ngIf="isLoggedIn$ | async"
+                >
+                  <button
+                    class="btn btn-danger rounded-0 px-3"
+                    (click)="removeItem()"
+                  >
+                    Logout
+                  </button></a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<router-outlet></router-outlet>

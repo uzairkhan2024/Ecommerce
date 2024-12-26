@@ -27,9 +27,9 @@
               }
             ],
             "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
+             "node_modules/bootstrap/dist/css/bootstrap.min.css",
+            "src/styles.css"],
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
           },
           "configurations": {
             "production": {
@@ -37,12 +37,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumError": "5MB"
                 },
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kB",
-                  "maximumError": "4kB"
+                  "maximumError": "30kB"
                 }
               ],
               "outputHashing": "all"

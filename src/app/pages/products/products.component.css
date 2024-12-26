@@ -1,0 +1,38 @@
+/* Ensure cards have equal size */
+.product-card {
+    height: 100%; /* Makes the card stretch to fill the available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Aligns content neatly */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds uniform shadow */
+    border-radius: 8px; /* Optional: round corners */
+    overflow: hidden; /* Prevent content overflow */
+}
+
+.product-card img {
+    height: 200px; /* Fixed height for images */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    width: 100%; /* Ensure full width */
+}
+
+.product-card .card-body {
+    flex-grow: 1; /* Ensures the body fills available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Keeps the buttons at the bottom */
+}
+
+.filter{
+    margin-left: -20px;
+}
+
+
+.price-filter input {
+    max-width: 120px;
+  }
+  
+
+  .PageNumber{
+    margin-right: 10px;
+    margin-top: 6px;
+  }

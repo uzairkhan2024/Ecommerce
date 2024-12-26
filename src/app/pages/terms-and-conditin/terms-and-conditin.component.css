@@ -1,0 +1,26 @@
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+h1 {
+    text-align: center;
+    color: #444;
+}
+ h2 {
+    color: #444;
+}
+ul {
+    padding-left: 20px;
+}
+a {
+    color: #007BFF;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
